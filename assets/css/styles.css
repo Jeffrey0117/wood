@@ -11242,10 +11242,7 @@
     flex-direction: column;
   }
   .kt-menu-dropdown {
-    .show.kt-menu-item-dropdown > &, .base-popper-root > .kt-menu-container > &, &.kt-menu.show, &.show[data-popper-placement] {
-      display: flex;
-      will-change: transform;
-    }
+    display: none !important;
   }
   .kt-menu-accordion {
     display: none;
