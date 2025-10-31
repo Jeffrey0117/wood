@@ -2618,30 +2618,5 @@
 
      <!-- 導航功能 JavaScript -->
      <script src="assets/js/navigation.js"></script>
-     
-     <!-- 導航測試函數 -->
-     <script>
-       function testNavigationTo(targetPage) {
-         console.log('🧪 測試跳轉到:', targetPage);
-         if (window.NavigationHelper && window.NavigationHelper.smoothPageTransition) {
-           window.NavigationHelper.smoothPageTransition(targetPage);
-         } else {
-           console.warn('⚠️ NavigationHelper 未載入，使用直接跳轉');
-           window.location.href = targetPage;
-         }
-       }
-       
-       // 頁面載入完成後的狀態檢查
-       window.addEventListener('DOMContentLoaded', function() {
-         setTimeout(() => {
-           if (window.NavigationHelper) {
-             console.log('✅ 導航系統運作正常');
-             console.log('📋 可用頁面對應:', window.NavigationHelper.navigationMapping);
-           } else {
-             console.error('❌ 導航系統載入失敗');
-           }
-         }, 1000);
-       });
-     </script>
 </body>
 </html>

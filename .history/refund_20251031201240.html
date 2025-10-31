@@ -2393,16 +2393,6 @@
          <div class="kt-container-fixed py-10">
   <div class="max-w-4xl mx-auto space-y-8">
     
-    <!-- 導航測試區域 (開發用) -->
-    <div class="mb-8 p-4 bg-blue-50 border border-blue-200 rounded-lg">
-      <h3 class="text-lg font-bold text-blue-800 mb-3">🔧 導航功能測試</h3>
-      <div class="space-x-2">
-        <button onclick="testNavigationTo('brands.html')" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">測試跳轉到品牌合作</button>
-        <button onclick="testNavigationTo('faq.html')" class="px-4 py-2 bg-green-500 text-white rounded hover:bg-green-600">測試跳轉到Q&A</button>
-        <button onclick="console.log('NavigationHelper:', window.NavigationHelper)" class="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600">檢查JS載入狀態</button>
-      </div>
-    </div>
-
     <div class="mb-8">
       <h2 class="text-3xl font-black text-gray-800 mb-4">詢價須知</h2>
       <p class="text-gray-700 leading-relaxed text-lg">
@@ -2615,33 +2605,5 @@
        </div>
       </div>
      </footer>
-
-     <!-- 導航功能 JavaScript -->
-     <script src="assets/js/navigation.js"></script>
-     
-     <!-- 導航測試函數 -->
-     <script>
-       function testNavigationTo(targetPage) {
-         console.log('🧪 測試跳轉到:', targetPage);
-         if (window.NavigationHelper && window.NavigationHelper.smoothPageTransition) {
-           window.NavigationHelper.smoothPageTransition(targetPage);
-         } else {
-           console.warn('⚠️ NavigationHelper 未載入，使用直接跳轉');
-           window.location.href = targetPage;
-         }
-       }
-       
-       // 頁面載入完成後的狀態檢查
-       window.addEventListener('DOMContentLoaded', function() {
-         setTimeout(() => {
-           if (window.NavigationHelper) {
-             console.log('✅ 導航系統運作正常');
-             console.log('📋 可用頁面對應:', window.NavigationHelper.navigationMapping);
-           } else {
-             console.error('❌ 導航系統載入失敗');
-           }
-         }, 1000);
-       });
-     </script>
 </body>
 </html>
