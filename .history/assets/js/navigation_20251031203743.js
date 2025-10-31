@@ -5,13 +5,6 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
-    // 防止重複初始化
-    if (window.navigationSystemInitialized) {
-        console.log('⚠️ 導航系統已經初始化，跳過重複執行');
-        return;
-    }
-    window.navigationSystemInitialized = true;
-    
     // 導航選單對應關係
     const navigationMapping = {
         '網站規則': 'refund.html',
@@ -45,11 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('🚧 配置開發中功能:', menuText);
                 
                 const menuLink = menuItem.querySelector('.kt-menu-link');
-                if (menuLink && !menuLink.hasAttribute('data-dev-configured')) {
-                    // 標記為已配置，避免重複綁定事件
-                    menuLink.setAttribute('data-dev-configured', 'true');
-                    titleElement.setAttribute('data-dev-configured', 'true');
-                    
+                if (menuLink) {
                     // 添加視覺提示
                     menuLink.style.cursor = 'pointer';
                     menuLink.title = `${menuText} - 功能開發中`;
@@ -58,47 +47,59 @@ document.addEventListener('DOMContentLoaded', function() {
                     titleElement.style.opacity = '0.7';
                     titleElement.title = '功能開發中，敬請期待';
                     
-                    // 創建開發中功能的點擊事件處理器（只綁定一次）
+                    // 創建開發中功能的點擊事件處理器
                     const developingClickHandler = function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🚧 開發中功能點擊:', menuText);
-                        
-                        // 顯示開發中提示
-                        showDevelopingAlert(menuText);
+                        if (e.target === titleElement || titleElement.contains(e.target)) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            console.log('🚧 開發中功能點擊:', menuText);
+                            
+                            // 顯示開發中提示
+                            showDevelopingAlert(menuText);
+                        }
                     };
                     
-                    // 只為 menuLink 添加事件監聽器，避免重複
+                    // 添加事件監聽器
                     menuLink.addEventListener('click', developingClickHandler);
+                    titleElement.addEventListener('click', developingClickHandler);
                 }
             } else if (navigationMapping[menuText]) {
                 console.log('✅ 配置導航:', menuText, '→', navigationMapping[menuText]);
                 
                 const menuLink = menuItem.querySelector('.kt-menu-link');
-                if (menuLink && !menuLink.hasAttribute('data-nav-configured')) {
-                    // 標記為已配置，避免重複綁定事件
-                    menuLink.setAttribute('data-nav-configured', 'true');
-                    titleElement.setAttribute('data-nav-configured', 'true');
-                    
+                if (menuLink) {
                     // 添加視覺提示
                     menuLink.style.cursor = 'pointer';
                     menuLink.title = `點擊跳轉到${navigationMapping[menuText]}`;
                     
-                    // 創建新的點擊事件處理器（只綁定一次）
+                    // 創建新的點擊事件處理器
                     const clickHandler = function(e) {
+                        // 只有點擊主選單標題時才跳轉
+                        if (e.target === titleElement || titleElement.contains(e.target)) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const targetPage = navigationMapping[menuText];
+                            console.log('🔗 執行跳轉:', menuText, '→', targetPage);
+                            
+                            // 平滑跳轉效果
+                            smoothPageTransition(targetPage);
+                        }
+                    };
+                    
+                    // 添加事件監聽器
+                    menuLink.addEventListener('click', clickHandler);
+                    
+                    // 也為標題元素單獨添加點擊事件
+                    titleElement.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
                         const targetPage = navigationMapping[menuText];
-                        console.log('🔗 執行跳轉:', menuText, '→', targetPage);
-                        
-                        // 平滑跳轉效果
+                        console.log('🔗 標題直接點擊跳轉:', menuText, '→', targetPage);
                         smoothPageTransition(targetPage);
-                    };
-                    
-                    // 只為 menuLink 添加事件監聽器，避免重複
-                    menuLink.addEventListener('click', clickHandler);
+                    });
                 }
             }
         });
@@ -127,18 +128,14 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
         
-        // 處理開發中功能項目 (只處理尚未被主選單處理的元素)
+        // 處理開發中功能項目
         developingFeatures.forEach(menuText => {
             const elements = document.querySelectorAll('.kt-menu-title');
             elements.forEach(element => {
                 if (element.textContent.trim().replace('⭣', '') === menuText) {
                     const parentItem = element.closest('.kt-menu-item');
-                    // 檢查是否已經被主選單處理過，或者已經被備用方案處理過
-                    if (parentItem && 
-                        !element.hasAttribute('data-dev-backup-configured') && 
-                        !element.hasAttribute('data-dev-configured')) {
-                        
-                        element.setAttribute('data-dev-backup-configured', 'true');
+                    if (parentItem && !parentItem.hasAttribute('data-dev-configured')) {
+                        parentItem.setAttribute('data-dev-configured', 'true');
                         
                         element.style.cursor = 'pointer';
                         element.style.opacity = '0.7';
@@ -238,8 +235,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const linkText = link.textContent.trim();
             
             // 檢查是否為開發中功能
-            if (developingFeatures.includes(linkText) && !link.hasAttribute('data-footer-dev-configured')) {
-                link.setAttribute('data-footer-dev-configured', 'true');
+            if (developingFeatures.includes(linkText)) {
                 link.href = '#';
                 link.style.opacity = '0.7';
                 link.title = '功能開發中，敬請期待';
@@ -249,8 +245,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     console.log('🚧 Footer開發中功能點擊:', linkText);
                     showDevelopingAlert(linkText);
                 });
-            } else if (!link.hasAttribute('data-footer-nav-configured')) {
-                link.setAttribute('data-footer-nav-configured', 'true');
+            } else {
                 switch(linkText) {
                     case '網站規則':
                         link.href = 'refund.html';
@@ -328,36 +323,13 @@ document.addEventListener('DOMContentLoaded', function() {
     // 初始化導航
     initializeNavigation();
 
-    // 處理動態載入的內容（限制執行頻率）
-    let isInitializing = false;
+    // 處理動態載入的內容
     const observer = new MutationObserver(function(mutations) {
-        if (isInitializing) return; // 如果正在初始化，跳過
-        
-        let hasSignificantChanges = false;
         mutations.forEach(function(mutation) {
             if (mutation.addedNodes.length > 0) {
-                // 檢查是否有重要的導航元素被添加
-                Array.from(mutation.addedNodes).forEach(node => {
-                    if (node.nodeType === 1) { // 只處理元素節點
-                        if (node.querySelector && (
-                            node.querySelector('.kt-menu-item') || 
-                            node.querySelector('footer') ||
-                            node.textContent.includes('LOGO')
-                        )) {
-                            hasSignificantChanges = true;
-                        }
-                    }
-                });
+                initializeNavigation();
             }
         });
-        
-        if (hasSignificantChanges) {
-            isInitializing = true;
-            setTimeout(() => {
-                initializeNavigation();
-                isInitializing = false;
-            }, 100); // 延遲100ms執行，避免過於頻繁
-        }
     });
 
     // 開始觀察DOM變化
@@ -397,45 +369,16 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.ok)
             .catch(() => false);
     }
-    
-    // 顯示開發中功能提示
-    function showDevelopingAlert(featureName) {
-        const messages = {
-            '運費試算': '運費試算功能正在開發中，敬請期待！\n\n我們正努力為您提供準確的運費計算服務。',
-            '成本試算': '成本試算功能正在開發中，敬請期待！\n\n我們正努力為您提供詳細的成本分析工具。'
-        };
-        
-        const message = messages[featureName] || `${featureName}功能正在開發中，敬請期待！`;
-        
-        // 使用更友善的提示方式
-        if (typeof Swal !== 'undefined') {
-            // 如果有 SweetAlert，使用它
-            Swal.fire({
-                icon: 'info',
-                title: '功能開發中',
-                text: message,
-                confirmButtonText: '我知道了',
-                confirmButtonColor: '#3085d6'
-            });
-        } else {
-            // 否則使用原生 alert
-            alert(`🚧 ${message}`);
-        }
-        
-        console.log(`🚧 ${featureName} - 開發中功能被觸發`);
-    }
 
     // 導出函數供其他腳本使用
     window.NavigationHelper = {
-        setupLogoNavigation,        // Logo導航功能
-        setupMainNavigation,        // 主選單導航功能
-        setupFooterNavigation,      // Footer導航功能
-        setupBreadcrumbNavigation,  // 麵包屑導航功能
-        smoothPageTransition,       // 平滑頁面切換
-        checkPageExists,           // 檢查頁面是否存在
-        showDevelopingAlert,       // 顯示開發中提示
-        navigationMapping,         // 導航對應關係
-        developingFeatures         // 開發中功能列表
+        setupLogoNavigation,        // 新增：Logo導航功能
+        setupMainNavigation,
+        setupFooterNavigation,
+        setupBreadcrumbNavigation,
+        smoothPageTransition,
+        checkPageExists,
+        navigationMapping
     };
     
     console.log('✅ 導航系統載入完成！可用功能:', Object.keys(window.NavigationHelper));

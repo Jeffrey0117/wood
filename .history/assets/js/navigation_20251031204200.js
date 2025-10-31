@@ -58,19 +58,22 @@ document.addEventListener('DOMContentLoaded', function() {
                     titleElement.style.opacity = '0.7';
                     titleElement.title = '功能開發中，敬請期待';
                     
-                    // 創建開發中功能的點擊事件處理器（只綁定一次）
+                    // 創建開發中功能的點擊事件處理器
                     const developingClickHandler = function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
-                        
-                        console.log('🚧 開發中功能點擊:', menuText);
-                        
-                        // 顯示開發中提示
-                        showDevelopingAlert(menuText);
+                        if (e.target === titleElement || titleElement.contains(e.target)) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            console.log('🚧 開發中功能點擊:', menuText);
+                            
+                            // 顯示開發中提示
+                            showDevelopingAlert(menuText);
+                        }
                     };
                     
-                    // 只為 menuLink 添加事件監聽器，避免重複
+                    // 添加事件監聽器
                     menuLink.addEventListener('click', developingClickHandler);
+                    titleElement.addEventListener('click', developingClickHandler);
                 }
             } else if (navigationMapping[menuText]) {
                 console.log('✅ 配置導航:', menuText, '→', navigationMapping[menuText]);
@@ -85,20 +88,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuLink.style.cursor = 'pointer';
                     menuLink.title = `點擊跳轉到${navigationMapping[menuText]}`;
                     
-                    // 創建新的點擊事件處理器（只綁定一次）
+                    // 創建新的點擊事件處理器
                     const clickHandler = function(e) {
+                        // 只有點擊主選單標題時才跳轉
+                        if (e.target === titleElement || titleElement.contains(e.target)) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const targetPage = navigationMapping[menuText];
+                            console.log('🔗 執行跳轉:', menuText, '→', targetPage);
+                            
+                            // 平滑跳轉效果
+                            smoothPageTransition(targetPage);
+                        }
+                    };
+                    
+                    // 添加事件監聽器
+                    menuLink.addEventListener('click', clickHandler);
+                    
+                    // 也為標題元素單獨添加點擊事件
+                    titleElement.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
                         const targetPage = navigationMapping[menuText];
-                        console.log('🔗 執行跳轉:', menuText, '→', targetPage);
-                        
-                        // 平滑跳轉效果
+                        console.log('🔗 標題直接點擊跳轉:', menuText, '→', targetPage);
                         smoothPageTransition(targetPage);
-                    };
-                    
-                    // 只為 menuLink 添加事件監聽器，避免重複
-                    menuLink.addEventListener('click', clickHandler);
+                    });
                 }
             }
         });

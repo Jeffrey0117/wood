@@ -85,20 +85,33 @@ document.addEventListener('DOMContentLoaded', function() {
                     menuLink.style.cursor = 'pointer';
                     menuLink.title = `點擊跳轉到${navigationMapping[menuText]}`;
                     
-                    // 創建新的點擊事件處理器（只綁定一次）
+                    // 創建新的點擊事件處理器
                     const clickHandler = function(e) {
+                        // 只有點擊主選單標題時才跳轉
+                        if (e.target === titleElement || titleElement.contains(e.target)) {
+                            e.preventDefault();
+                            e.stopPropagation();
+                            
+                            const targetPage = navigationMapping[menuText];
+                            console.log('🔗 執行跳轉:', menuText, '→', targetPage);
+                            
+                            // 平滑跳轉效果
+                            smoothPageTransition(targetPage);
+                        }
+                    };
+                    
+                    // 添加事件監聽器
+                    menuLink.addEventListener('click', clickHandler);
+                    
+                    // 也為標題元素單獨添加點擊事件
+                    titleElement.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
                         const targetPage = navigationMapping[menuText];
-                        console.log('🔗 執行跳轉:', menuText, '→', targetPage);
-                        
-                        // 平滑跳轉效果
+                        console.log('🔗 標題直接點擊跳轉:', menuText, '→', targetPage);
                         smoothPageTransition(targetPage);
-                    };
-                    
-                    // 只為 menuLink 添加事件監聽器，避免重複
-                    menuLink.addEventListener('click', clickHandler);
+                    });
                 }
             }
         });
