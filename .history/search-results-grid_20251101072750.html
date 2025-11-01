@@ -756,13 +756,6 @@
              <i class="ki-filled ki-dollar">
              </i>
             </span>
-            <input class="kt-input" placeholder="起步" type="text">
-           </div>
-           <div class="kt-input-group">
-            <span class="kt-input-addon kt-input-addon-icon">
-             <i class="ki-filled ki-dollar">
-             </i>
-            </span>
             <input class="kt-input" placeholder="上限價格" type="text">
            </div>
           </div>
@@ -813,7 +806,7 @@
 
         <!-- Thumbnail Strip Below Image Card (on white background) -->
         <div class="thumbnail-strip flex justify-between gap-2 mt-4 px-5">
-         <div class="thumbnail-item w-16 h-16 rounded-lg border-2 border-gray-400 cursor-pointer overflow-hidden active" data-slide="0">
+         <div class="thumbnail-item w-16 h-16 rounded-lg border-2 border-white cursor-pointer overflow-hidden active" data-slide="0">
           <img alt="建材圖片1" class="w-full h-full object-cover hover:scale-105 transition-transform" src="product_04.png"/>
          </div>
          <div class="thumbnail-item w-16 h-16 rounded-lg border-2 border-gray-400 cursor-pointer overflow-hidden hover:border-gray-600" data-slide="1">
@@ -965,29 +958,22 @@
  <section class="px-3 mt-4">
    <div class="rounded-2xl bg-[#F1F0ED] p-2 shadow-sm">
      <img
-       src="product_01.png"
+       src="https://images.unsplash.com/photo-1562113530-57ba1cea56b4?q=80&w=1600&auto=format&fit=crop"
        alt="北歐霧面水泥磁磚 形象圖"
-       class="w-full h-48 rounded-xl object-cover" />
+       class="w-full rounded-xl object-cover" />
    </div>
  </section>
-
- <!-- 底部操作按鈕 -->
- <section class="px-4 py-4 border-t border-gray-200 mt-4">
-   <div class="flex items-center gap-3">
-     <button class="flex-1 h-12 rounded-lg border-2 border-gray-300 text-gray-700 text-sm font-medium hover:bg-gray-50 transition-colors" id="add-to-cart-btn">
-       加入購物車
-     </button>
-     <button class="flex-1 h-12 rounded-lg bg-orange-500 text-sm font-medium hover:bg-orange-600 transition-colors" style="background-color: #f97316 !important; color: #ffffff !important;">
-       立即購買
-     </button>
-   </div>
- </section>
-
 </div>
+       </div>
+       <div class="kt-card-footer px-5">
+        <button class="kt-btn kt-btn-primary grow" id="add-to-cart-btn">
+         <i class="ki-filled ki-handcart">
+         </i>
+         加入購物車
+        </button>
        </div>
       </div>
       <!--End of Product Details Drawer-->
-      
       <!-- End of Topbar -->
      </div>
     </div>
@@ -2566,7 +2552,7 @@
    <!-- Wrapper Container -->
    <div class="container-fixed w-full flex px-0">
     <!-- Content -->
-    <main class="flex flex-col grow pb-20" id="content" role="content">
+    <main class="flex flex-col grow" id="content" role="content">
      <!-- Toolbar -->
 
      <!-- End of Toolbar -->
@@ -2621,11 +2607,10 @@
              5
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
+               $99.00
               </span>
               <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
                <i class="ki-filled ki-handcart text-lg">
@@ -2640,55 +2625,42 @@
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_02.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
              <i class="ki-solid ki-star text-white -mt-0.5">
              </i>
-             5
+             4
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $65.99
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_03.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
@@ -2697,74 +2669,66 @@
              5
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $120.00
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_04.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
              <i class="ki-solid ki-star text-white -mt-0.5">
              </i>
-             5
+             4
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
+              $179.00
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $140.00
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+
+
+        </div>
+               <div class="grid sm:grid-cols-4 gap-5 mb-2">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
              <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
@@ -2773,74 +2737,60 @@
              5
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $99.00
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_02.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
              <i class="ki-solid ki-star text-white -mt-0.5">
              </i>
-             5
+             4
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $65.99
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_03.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
@@ -2849,55 +2799,49 @@
              5
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $120.00
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
          </div>
-                  <div class="kt-card">
+         <div class="kt-card">
           <div class="kt-card-content flex flex-col justify-between p-2.5 gap-4">
            <div class="mb-2.5">
             <div class="kt-card flex items-center justify-center relative bg-accent/50 w-full h-[180px] mb-4 shadow-none">
-             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_01.png">
-             <span class="kt-badge kt-badge-destructive kt-badge-sm uppercase absolute top-2 end-2">
-               save 40%
-             </span>
+
+             <img alt="" class="h-[180px] shrink-0 cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details" src="product_04.png">
             </div>
-            <div class="flex justify-between items-center">
-             <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
-             建材名稱
-             </span>
-             <span class="text-xs text-secondary-foreground px-2.5 leading-5.5 block">品牌,尺寸,最低數量xxx</span>
-            </div>
+            <span class="text-sm font-medium text-mono px-2.5 leading-5.5 block cursor-pointer" data-kt-drawer-toggle="#drawers_shop_product_details">
+            建材名稱
+           </span>
            </div>
            <div class="flex items-center flex-wrap justify-between gap-5 px-2.5 pb-1">
             <span class="kt-badge kt-badge-warning kt-badge-sm rounded-full gap-1">
              <i class="ki-solid ki-star text-white -mt-0.5">
              </i>
-             5
+             4
             </span>
             <div class="flex items-center flex-wrap gap-1.5">
-             <span class="text-xs font-normal text-gray-400 line-through pt-[1px]">
-              NT$2680
+             <span class="text-xs font-normal text-secondary-foreground line-through pt-[1px]">
+              $179.00
              </span>
              <span class="text-sm font-medium text-mono">
-               NT$1880
-              </span>
-              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
-               <i class="ki-filled ki-handcart text-lg">
-               </i>
+              $140.00
+             </span>
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <i class="ki-filled ki-handcart text-lg">
+              </i>
 
-              </button>
+             </button>
             </div>
            </div>
           </div>
@@ -5126,8 +5070,6 @@
   </script>
   <!-- 導航功能 JavaScript -->
   <script src="assets/js/navigation.js"></script>
-  <!-- 商品詳情互動功能 JavaScript -->
-  <script src="assets/js/product-details.js"></script>
   <!-- End of Scripts -->
  </body>
 </html>

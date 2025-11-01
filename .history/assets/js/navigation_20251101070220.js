@@ -183,14 +183,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // 添加點擊事件
                 logo.addEventListener('click', function(e) {
-                    // 檢查是否點擊了選單按鈕或其子元素
-                    const menuButton = e.target.closest('[data-kt-drawer-toggle]');
-                    if (menuButton) {
-                        // 如果是選單按鈕，不執行導航，讓按鈕的原有功能執行
-                        console.log('📱 點擊了選單按鈕，跳過 Header LOGO 導航');
-                        return;
-                    }
-                    
                     e.preventDefault();
                     e.stopPropagation();
                     console.log('🏠 Header Logo 點擊，跳轉到首頁');
@@ -227,14 +219,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // 添加點擊事件
                 element.addEventListener('click', function(e) {
-                    // 檢查是否點擊了選單按鈕或其子元素
-                    const menuButton = e.target.closest('[data-kt-drawer-toggle]');
-                    if (menuButton) {
-                        // 如果是選單按鈕，不執行導航，讓按鈕的原有功能執行
-                        console.log('📱 點擊了選單按鈕，跳過 LOGO 導航');
-                        return;
-                    }
-                    
                     e.preventDefault();
                     e.stopPropagation();
                     console.log('🏠 Logo 點擊，跳轉到首頁');
