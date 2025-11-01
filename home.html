@@ -794,7 +794,7 @@
    <div class="flex items-center justify-between">
      <!-- 數量控制 -->
      <div class="inline-flex items-center gap-4">
-       <button type="button" aria-label="減少"
+       <button type="button" aria-label="減少" id="decrease-btn"
                class="w-8 h-8 grid place-content-center border border-gray-300 rounded">
          <!-- minus -->
          <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80">
@@ -802,9 +802,9 @@
          </svg>
        </button>
 
-       <span class="w-10 text-center text-[14px]">1</span>
+       <span class="w-10 text-center text-[14px]" id="quantity-display">1</span>
 
-       <button type="button" aria-label="增加"
+       <button type="button" aria-label="增加" id="increase-btn"
                class="w-8 h-8 grid place-content-center border border-gray-300 rounded">
          <!-- plus -->
          <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80">
@@ -814,7 +814,7 @@
      </div>
 
      <!-- 加入最愛 -->
-     <button type="button"
+     <button type="button" id="favorite-btn"
              class="inline-flex items-center gap-2 px-3 h-9 rounded-full border border-gray-300 text-[13px] bg-white">
        <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80">
          <path d="M12.1 8.64l.9-.92a4 4 0 115.66 5.66L12 20l-6.66-6.62a4 4 0 115.66-5.66l.9.92.1.1.1-.1z"
@@ -2510,7 +2510,7 @@
 
              </span>
              <div class="flex items-center gap-4">
-              <button class="kt-btn kt-btn-mono kt-btn-sm" data-kt-drawer-toggle="#drawers_shop_product_details">
+              <button class="kt-btn kt-btn-outline kt-btn-sm ms-1 shrink-0" data-kt-drawer-toggle="#drawers_shop_product_details">
                <i class="ki-filled ki-handcart text-lg">
                </i>
 
@@ -2535,7 +2535,7 @@
              <span class="text-sm font-medium text-mono mb-2.5">
               $110.00
              </span>
-             <button class="kt-btn kt-btn-outline kt-btn-sm mb-4" data-kt-drawer-toggle="#drawers_shop_product_details">
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
               <i class="ki-filled ki-handcart text-lg">
               </i>
 
@@ -2551,7 +2551,7 @@
              <span class="text-sm font-medium text-mono mb-2.5">
               $96.99
              </span>
-             <button class="kt-btn kt-btn-outline kt-btn-sm mb-4" data-kt-drawer-toggle="#drawers_shop_product_details">
+             <button class="kt-btn kt-btn-outline kt-btn-sm ms-1" data-kt-drawer-toggle="#drawers_shop_product_details">
               <i class="ki-filled ki-handcart text-lg">
               </i>
 
@@ -4557,14 +4557,14 @@
       // Update main image
       mainImage.src = images[currentIndex];
 
-      // Update thumbnails - all have gray border, selected has white border
+      // Update thumbnails - all have gray border, selected has blue background and border
       thumbnails.forEach((thumb, index) => {
         if (index === currentIndex) {
           thumb.classList.add('active');
-          thumb.style.borderColor = 'white';
+          thumb.classList.add('bg-blue-100', 'border-blue-500');
         } else {
           thumb.classList.remove('active');
-          thumb.style.borderColor = '#9ca3af'; // gray-400 color
+          thumb.classList.remove('bg-blue-100', 'border-blue-500');
         }
       });
     }
@@ -4631,10 +4631,14 @@
 
     colorButtons.forEach(button => {
       button.addEventListener('click', function() {
-        // Remove selected class from all color buttons
-        colorButtons.forEach(btn => btn.classList.remove('bg-blue-100', 'border-blue-500'));
-        // Add selected class to clicked button
-        this.classList.add('bg-blue-100', 'border-blue-500');
+        // Remove selected class from all color buttons and restore hover
+        colorButtons.forEach(btn => {
+          btn.classList.remove('bg-blue-500', 'text-white');
+          btn.classList.add('hover:bg-gray-100');
+        });
+        // Add selected class to clicked button and remove hover
+        this.classList.add('bg-blue-500', 'text-white');
+        this.classList.remove('hover:bg-gray-100');
         selectedColor = this.textContent.trim();
         console.log('Selected color:', selectedColor);
       });
@@ -4646,10 +4650,14 @@
 
     sizeButtons.forEach(button => {
       button.addEventListener('click', function() {
-        // Remove selected class from all size buttons
-        sizeButtons.forEach(btn => btn.classList.remove('bg-blue-100', 'border-blue-500'));
-        // Add selected class to clicked button
-        this.classList.add('bg-blue-100', 'border-blue-500');
+        // Remove selected class from all size buttons and restore hover
+        sizeButtons.forEach(btn => {
+          btn.classList.remove('bg-blue-500', 'text-white');
+          btn.classList.add('hover:bg-gray-100');
+        });
+        // Add selected class to clicked button and remove hover
+        this.classList.add('bg-blue-500', 'text-white');
+        this.classList.remove('hover:bg-gray-100');
         selectedSize = this.textContent.trim();
         console.log('Selected size:', selectedSize);
       });
@@ -4665,6 +4673,53 @@
         }
         alert(`已將 ${selectedColor} ${selectedSize} 加入購物車`);
         // Here you can add logic to actually add to cart
+      });
+    }
+
+    // Quantity control functionality
+    const decreaseBtn = document.getElementById('decrease-btn');
+    const increaseBtn = document.getElementById('increase-btn');
+    const quantityDisplay = document.getElementById('quantity-display');
+    let quantity = 1;
+
+    if (decreaseBtn && increaseBtn && quantityDisplay) {
+      decreaseBtn.addEventListener('click', function() {
+        if (quantity > 1) {
+          quantity--;
+          quantityDisplay.textContent = quantity;
+        }
+      });
+
+      increaseBtn.addEventListener('click', function() {
+        quantity++;
+        quantityDisplay.textContent = quantity;
+      });
+    }
+
+    // Favorite button functionality
+    const favoriteBtn = document.getElementById('favorite-btn');
+    let isFavorite = false;
+
+    if (favoriteBtn) {
+      favoriteBtn.addEventListener('click', function() {
+        isFavorite = !isFavorite;
+        if (isFavorite) {
+          favoriteBtn.classList.add('bg-red-100', 'border-red-300');
+          favoriteBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80 fill-red-500">
+              <path d="M12.1 8.64l.9-.92a4 4 0 115.66 5.66L12 20l-6.66-6.62a4 4 0 115.66-5.66l.9.92.1.1.1-.1z" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            已加入最愛
+          `;
+        } else {
+          favoriteBtn.classList.remove('bg-red-100', 'border-red-300');
+          favoriteBtn.innerHTML = `
+            <svg width="16" height="16" viewBox="0 0 24 24" class="opacity-80">
+              <path d="M12.1 8.64l.9-.92a4 4 0 115.66 5.66L12 20l-6.66-6.62a4 4 0 115.66-5.66l.9.92.1.1.1-.1z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+            </svg>
+            加入最愛
+          `;
+        }
       });
     }
   });
